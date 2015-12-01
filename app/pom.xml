@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jnlp</artifactId>
+        <groupId>ru.itis.jnlp</groupId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jnlpapp</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>javax.jnlp</groupId>
+            <artifactId>jnlp</artifactId>
+            <version>1.6</version>
+            <!--<scope>system</scope>-->
+        </dependency>
+
+    </dependencies>
+    <!--
+     <repositories>
+            <repository>
+                <id>vpda.org</id>
+                <url>http://vpda.org/maven-repo-external/</url>
+            </repository>
+        </repositories>
+    -->
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${entryPoint}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${entryPoint}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>webstart-maven-plugin</artifactId>
+                <version>1.0-beta-3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jnlp-inline</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+
+                    <codebase>http://localhost:8092/webapp/webstart/</codebase>
+                    <jnlp>
+                        <!--<inputTemplate>src/main/jnlp/template.vm</inputTemplate>-->
+                        <!-- relative to inputTemplateResourcePath -->
+                        <mainClass>${entryPoint}</mainClass>
+                        <!--<resources>${project.basedir}/src/main/jnlp</resources>-->
+                        <inputTemplateResourcePath>${project.basedir}</inputTemplateResourcePath>
+                        <outputFile>app.jnlp</outputFile>
+                        <!-- defaults to launch.jnlp -->
+                    </jnlp>
+                    <excludeTransitive>false</excludeTransitive>
+
+                    <!-- The path where the libraries are stored within the jnlp structure. not required. by default the libraries are within the working directory -->
+                    <libPath>lib</libPath>
+                    <!--<outputJarVersions>true</outputJarVersions>-->
+                    <!--<dependencies>
+                        <includes>
+                            <include>ru.itis.jnlp:jnlpapp</include>
+                        </includes>
+                    </dependencies>-->
+                    <pack200>true</pack200>
+                    <sign>
+                        <keystore>${project.basedir}/labirynth</keystore>
+                        <keypass>labirynth</keypass>
+                        <storepass>labirynth</storepass>
+                        <alias>labirynth</alias>
+                        <verify>false</verify>
+                    </sign>
+                    <verbose>true</verbose>
+                    <gzip>true</gzip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <includeEmptyDirs>true</includeEmptyDirs>
+                            <resources>
+                                <resource>
+                                    <targetPath>${basedir}/target/resources</targetPath>
+                                    <directory>resources</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                                <resource>
+                                    <targetPath>${basedir}/target/resources</targetPath>
+                                    <directory>resources</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
