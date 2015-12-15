@@ -19,7 +19,9 @@ public class MeOPortServer extends Thread {
             //MeOTCPSession meOTCPSession2 = new MeOTCPSession(listener.accept());
             //meOTCPSession2.sendSMS("Test serverside send","79047640086");
             while (true) {
+                System.out.println("Waiting for device started");
                 MeOPortSession meOPortSession = new MeOPortSession(newModemDeviceListener.accept());
+                System.out.println("Device added: "+meOPortSession.serialPort.getPortName());
                 globalDeviceList.add(meOPortSession);
                 meOPortSession.start();
             }

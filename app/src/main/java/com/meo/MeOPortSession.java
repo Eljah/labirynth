@@ -32,11 +32,11 @@ public class MeOPortSession extends AbstractMeOSession {
             //serialPort.addEventListener(new PortReader(), SerialPort.MASK_RXCHAR);
 
             //Формируем сообщение
-            try {
-                String message = "0011000B91" + reversePhone(number) + "0008A7" + StringToUSC2(text);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //try {
+            //    String message = "0011000B91" + reversePhone(number) + "0008A7" + StringToUSC2(text);
+            //} catch (IOException e) {
+            //    e.printStackTrace();
+            //}
 
 
             char c = 0x0D;//Символ перевода каретки CR
