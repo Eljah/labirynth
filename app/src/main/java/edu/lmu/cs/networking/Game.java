@@ -9,7 +9,7 @@ import java.net.Socket;
 /**
  * A two-player game.
  */
-class Game {
+public class Game {
 
     /**
      * A board has nine squares.  Each square is either unowned or
@@ -169,5 +169,17 @@ class Game {
                 try {socket.close();} catch (IOException e) {}
             }
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        if (currentPlayer!=null) {
+            return currentPlayer.mark + " has won";
+        }
+        else {
+            return "game in progress";
+        }
+
     }
 }

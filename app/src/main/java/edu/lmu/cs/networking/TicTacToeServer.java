@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A server for a network multi-player tic tac toe game.  Modified and
@@ -31,6 +33,8 @@ import java.net.Socket;
  */
 public class TicTacToeServer {
 
+    public static volatile List<Game> gamesArchive = new ArrayList<Game>(){};
+
     /**
      * Runs the application. Pairs up clients that connect.
      */
@@ -40,6 +44,7 @@ public class TicTacToeServer {
         try {
             while (true) {
                 Game game = new Game();
+                gamesArchive.add(game);
                 Game.Player playerX = game.new Player(listener.accept(), 'X');
                 Game.Player playerO = game.new Player(listener.accept(), 'O');
                 playerX.setOpponent(playerO);

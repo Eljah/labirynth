@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.meo.SMSSender;
+
 /**
  * A client for the TicTacToe game, modified and extended from the
  * class presented in Deitel and Deitel "Java How to Program" book.
@@ -168,6 +170,7 @@ public class TicTacToeClient {
      */
     public static void main(String[] args) throws Exception {
         while (true) {
+            //SMSSender.smsSend("Game started","79047640086");
             String serverAddress = (args.length == 0) ? "localhost" : args[1];
             TicTacToeClient client = new TicTacToeClient(serverAddress);
             client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

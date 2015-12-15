@@ -4,6 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+    <listener>
+        <listener-class>
+            tictac.TicTacToeStarterOnWebApp
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>
+            tictac.MeOStarterOnWebApp
+        </listener-class>
+    </listener>
+
     <mime-mapping>
         <extension>jnlp</extension>
         <mime-type>application/x-java-jnlp-file</mime-type>
