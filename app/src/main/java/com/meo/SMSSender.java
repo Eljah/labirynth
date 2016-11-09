@@ -91,7 +91,7 @@ public class SMSSender {
     public static boolean smsSend(String sms,String phone) throws IOException {
 
         //Передаём в конструктор имя порта
-        serialPort = new SerialPort("COM17");
+        serialPort = new SerialPort("COM37");
         try {
             //Открываем порт
             serialPort.openPort();
@@ -115,6 +115,22 @@ public class SMSSender {
             model=responce;
             System.out.println(responce);
 
+            //time
+            serialPort.purgePort(serialPort.PURGE_RXCLEAR | serialPort.PURGE_TXCLEAR);
+            //out.println(str);
+            String strt = "AT#NITZ"+c;
+            //str = "AT+CMGS="+getSMSLength(message)+c;
+            serialPort.writeString(strt);
+            Thread.sleep(2000);
+            responce=serialPort.readString();
+            System.out.println(responce);
+            //responce=serialPort.readString();
+            //System.out.println("Clock resp: "+responce);
+
+            //time/
+
+
+
 
             //Отправляем запрос устройству
             //String str = "AT+CMGF=0"+c;
@@ -132,6 +148,7 @@ public class SMSSender {
             Thread.sleep(2000);
             responce=serialPort.readString();
             System.out.println(responce);
+
             serialPort.purgePort(serialPort.PURGE_RXCLEAR | serialPort.PURGE_TXCLEAR);
             //out.println(str);
             c = 26;//Символ CTRL+Z

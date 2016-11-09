@@ -6,7 +6,7 @@ import java.util.Queue;
  * Created by Ilya Evlampiev on 09.12.2015.
  */
 public class ApachePastvuOrchestrator {
-    static int counter=400000;//140000;
+    static int counter=404000;//140000;
 
     static Queue<Integer> forgotten=new ArrayDeque<Integer>(){};
     public static void main(String [] args)

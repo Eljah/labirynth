@@ -27,7 +27,7 @@ import java.util.zip.GZIPInputStream;
  */
 public class ApachePastvuLoader extends Thread {
 
-    final int MAXCOUNTER = 402000;
+    final int MAXCOUNTER = 405000;//402000;
 
     private final String USER_AGENT = "Mozilla/5.0";
 
