@@ -17,8 +17,8 @@
         <!--<entryPoint>com.zetcom.Snake</entryPoint>-->
         <!--<entryPoint>edu.lmu.cs.networking.DateClient</entryPoint>-->
         <!--<entryPoint>edu.lmu.cs.networking.CapitalizeClient</entryPoint>-->
-        <!--<entryPoint>edu.lmu.cs.networking.TicTacToeClient</entryPoint>-->
-        <entryPoint>com.meo.MeOClient</entryPoint>
+        <entryPoint>edu.lmu.cs.networking.TicTacToeClient</entryPoint>
+        <!--<entryPoint>com.meo.MeOClient</entryPoint>-->
     </properties>
 
 
