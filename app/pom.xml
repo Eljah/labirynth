@@ -69,6 +69,11 @@
                 <id>vpda.org</id>
                 <url>http://vpda.org/maven-repo-external/</url>
             </repository>
+         <!--http://repo.opennms.org/maven2/-->
+         <repository>
+             <id>opennms</id>
+             <url>http://repo.opennms.org/maven2/</url>
+         </repository>
         </repositories>
 
 
@@ -109,9 +114,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>webstart-maven-plugin</artifactId>
-                <version>1.0-beta-3</version>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>webstart-maven-plugin</artifactId>
+                    <version>1.0-beta-7</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -122,15 +127,19 @@
                 </executions>
                 <configuration>
 
+                    <jnlpExtensions>
+
+                    </jnlpExtensions>
                     <codebase>http://localhost:8092/webapp/webstart/</codebase>
                     <jnlp>
-                        <!--<inputTemplate>src/main/jnlp/template.vm</inputTemplate>-->
+                        <inputTemplate>src/main/jnlp/template.vm</inputTemplate>
                         <!-- relative to inputTemplateResourcePath -->
                         <mainClass>${entryPoint}</mainClass>
                         <!--<resources>${project.basedir}/src/main/jnlp</resources>-->
                         <inputTemplateResourcePath>${project.basedir}</inputTemplateResourcePath>
                         <outputFile>app.jnlp</outputFile>
                         <!-- defaults to launch.jnlp -->
+
                     </jnlp>
                     <excludeTransitive>false</excludeTransitive>
 
@@ -142,7 +151,7 @@
                             <include>ru.itis.jnlp:jnlpapp</include>
                         </includes>
                     </dependencies>-->
-                    <pack200>true</pack200>
+                    <!--<pack200>true</pack200>-->
                     <sign>
                         <keystore>${project.basedir}/labirynth</keystore>
                         <keypass>labirynth</keypass>
