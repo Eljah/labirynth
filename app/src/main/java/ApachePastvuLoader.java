@@ -9,6 +9,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.postgresql.util.PGobject;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -137,7 +138,7 @@ public class ApachePastvuLoader extends Thread {
     * must cast the connection to the pgsql-specific connection
     * implementation before calling the addDataType() method.
     */
-                            ((org.postgresql.PGConnection) conpg).addDataType("geometry", Class.forName("org.postgis.PGgeometry"));
+                            ((org.postgresql.PGConnection) conpg).addDataType("geometry", (Class<? extends PGobject>) Class.forName("org.postgis.PGgeometry"));
                             //((org.postgresql.PGConnection)conpg).addDataType("point",Class.forName("org.postgis.Point"));
     /*
     * Create a statement and execute a select query.

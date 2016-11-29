@@ -14,8 +14,9 @@
         <dependency>
             <groupId>javax.jnlp</groupId>
             <artifactId>jnlp</artifactId>
-            <version>1.6</version>
-            <!--<scope>system</scope>-->
+            <version>7.0</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/lib/javaws.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -62,14 +63,14 @@
 
 
     </dependencies>
-    <!--
+
      <repositories>
             <repository>
                 <id>vpda.org</id>
                 <url>http://vpda.org/maven-repo-external/</url>
             </repository>
         </repositories>
-    -->
+
 
 
     <build>
